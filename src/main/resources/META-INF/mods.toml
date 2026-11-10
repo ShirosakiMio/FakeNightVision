@@ -7,7 +7,7 @@ modId="fakenightvision"
 version="${mod_version}"
 displayName="伪夜视 Fake Night Vision"
 authors="shiro"
-description='''无需夜视药水效果，强制让客户端以夜视亮度渲染世界。默认按 V 切换。'''
+description='''无需夜视药水，强制客户端以夜视亮度渲染世界；支持按环境亮度自动开关，并可消除监守者的黑暗效果。'''
 displayTest="IGNORE_ALL_VERSION"
 
 [[dependencies.fakenightvision]]

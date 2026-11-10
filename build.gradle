@@ -1,0 +1,89 @@
+buildscript {
+    repositories {
+        maven {
+            name = 'SpongePowered'
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7.+'
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+}
+apply plugin: 'org.spongepowered.mixin'
+
+version = '1.0.0'
+group = 'dev.shiro.fakenightvision'
+
+base {
+    archivesName = 'FakeNightVision-1.20.1'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'info'
+            mods {
+                fakenightvision {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.16'
+
+    // Mixin 注解处理器：编译期生成 refmap（开发用官方映射名 -> 生产环境 SRG 名）
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+// config 同时注入 dev 运行参数与 jar manifest 的 MixinConfigs 属性
+mixin {
+    add sourceSets.main, 'fakenightvision.refmap.json'
+    config 'fakenightvision.mixins.json'
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    // 必须显式指定:JVM 17 下 Windows 默认字符集是 GBK,expand 读 UTF-8 会把部分中文字节写成 '?'
+    filteringCharset = 'UTF-8'
+    var replaceProperties = [mc_version: '1.20.1', mod_version: version]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'   : 'fakenightvision',
+                'Specification-Vendor'  : 'shiro',
+                'Specification-Version' : '1',
+                'Implementation-Title'  : 'FakeNightVision',
+                'Implementation-Version': project.jar.archiveVersion,
+        ])
+    }
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

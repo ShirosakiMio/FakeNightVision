@@ -1,0 +1,7 @@
+{
+  "key.categories.fakenightvision": "Fake Night Vision",
+  "key.fakenightvision.toggle": "Toggle Fake Night Vision",
+  "message.fakenightvision.mode.off": "Fake Night Vision: OFF",
+  "message.fakenightvision.mode.on": "Fake Night Vision: ON",
+  "message.fakenightvision.mode.auto": "Fake Night Vision: AUTO (light %s)"
+}

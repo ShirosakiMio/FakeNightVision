@@ -1,0 +1,7 @@
+{
+  "key.categories.fakenightvision": "伪夜视",
+  "key.fakenightvision.toggle": "切换伪夜视",
+  "message.fakenightvision.mode.off": "伪夜视：关闭",
+  "message.fakenightvision.mode.on": "伪夜视：常开",
+  "message.fakenightvision.mode.auto": "伪夜视：自动（亮度 %s）"
+}

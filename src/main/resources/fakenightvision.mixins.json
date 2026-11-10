@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.shiro.fakenightvision.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "fakenightvision.refmap.json",
+  "client": [
+    "GameRendererMixin",
+    "LivingEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

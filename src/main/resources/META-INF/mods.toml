@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="fakenightvision"
+version="${mod_version}"
+displayName="伪夜视 Fake Night Vision"
+authors="shiro"
+description='''无需夜视药水效果，强制让客户端以夜视亮度渲染世界。默认按 V 切换。'''
+displayTest="IGNORE_ALL_VERSION"
+
+[[dependencies.fakenightvision]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.fakenightvision]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="CLIENT"
